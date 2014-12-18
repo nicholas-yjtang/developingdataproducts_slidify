@@ -50,13 +50,6 @@ We test the model with our remaining test set
 ```r
 prediction <- predict(modelFit, testing)
 prediction_results <- confusionMatrix(prediction, testing$type)
-```
-
-```
-## Error: could not find function "confusionMatrix"
-```
-
-```r
 prediction_results$table
 ```
 
