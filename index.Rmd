@@ -9,6 +9,9 @@ hitheme     : solarized_light      #
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
+github:
+  user: nicholas-yjtang
+  repo: developingdataproducts_slidify
 --- .changetitlecolor
 
 ## Introduction

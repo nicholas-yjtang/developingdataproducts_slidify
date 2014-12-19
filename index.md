@@ -9,6 +9,9 @@ hitheme     : solarized_light      #
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
+github:
+  user: nicholas-yjtang
+  repo: developingdataproducts_slidify
 --- .changetitlecolor
 
 ## Introduction
@@ -70,6 +73,6 @@ We measure the performance of our algorithm, testing the model with our remainin
   
 The out of sample accuracy of our model is **0.9429**  
   
-Our application is reasonably accurate (out of sample > 90%)
+Our application is reasonably accurate (out of sample performance > 90%)
 
 
