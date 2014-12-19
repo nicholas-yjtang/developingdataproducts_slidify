@@ -2,79 +2,74 @@
 title       : Developing Data Products Project
 subtitle    : Predicting spam
 author      : Nicholas Tang
-job         : 
-framework   : deckjs        # {io2012, html5slides, shower, dzslides, ...}
-theme       : mnml
+job         : Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
+hitheme     : solarized_light      # 
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
----
+--- .changetitlecolor
 
 ## Introduction
 
-We build a prediction model using the spam data as provided by [Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Spambase)
+* Our application will predict the text input is spam or nonspam.  
   
-The prediction model is built using caret, with focus on a generalized linear model  
+* The data to build the prediction model is provided by [Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Spambase)  
   
-We partition the data randomly, using 75% as the training, and 25% as the test/validation set
+* We partition the data randomly, using 60% as the training, and 40% as the test/validation set  
+    
+* The prediction model is built using the caret library, with focus on the boosted tree algorithm, with k-fold cross validation (k=10)  
+  
+* After creating the model. the application will take the text input and will convert it into the same format as the data set as described by [Machine Learning Repository - Dataset Description](https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names)  
+  
+* The final result is obtained by running the converted input through our prediction model, and displays if it is spam or not
 
----
+--- .changetitlecolor
 
-## Code
+## Prediction model
 
 The following is the code that creates the prediction mode  
 
 
 ```r
   require(kernlab)
-  require(caret)
+  require(caret)  
   require(e1071)
+  require(gbm)
   data(spam)
   set.seed(12345)
   inTrain <- createDataPartition(y=spam$type,p=0.6,list=FALSE)
   training <- spam[inTrain,]
   testing <- spam[-inTrain,]
   fitControl <- trainControl(method="cv", number=10)
-  modelFit <- train(type ~., data=training, method="gbm", trControl = fitControl, verbose=FALSE) 
+  modelFit <- train(type ~., data=training, method="gbm", 
+                    trControl = fitControl, verbose=FALSE) 
 ```
 
----
+--- .changetitlecolor
 
-## Measuring the accuracy
+## Performance (Training and fitting)
 
-We test the model with our remaining test set
+We plot the model tuning parameters and the performance estimate process to see how our parameters compare  
+
+![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2.png) 
+
+--- .changetitlecolor
+
+## Performance (Validation)
+
+We measure the performance of our algorithm, testing the model with our remaining test set (40%). The below describes the results in a confusion matrix table  
   
 
-```r
-prediction <- predict(modelFit, testing)
-prediction_results <- confusionMatrix(prediction, testing$type)
-prediction_results$table
-```
-
-```
-##           Reference
-## Prediction nonspam spam
-##    nonspam    1070   60
-##    spam         45  665
-```
-
-The out of sample accuracy of our model is **0.9429**
-
----
-
-## Confusion Matrix
-
-
-```r
-plot(modelFit)
-```
-
-![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3.png) 
-
----
-
-## Slide 5
+|    &nbsp;     |  nonspam  |  spam  |
+|:-------------:|:---------:|:------:|
+|  **nonspam**  |   1070    |   60   |
+|   **spam**    |    45     |  665   |
+  
+  
+The out of sample accuracy of our model is **0.9429**  
+  
+Our application is reasonably accurate (out of sample > 90%)
 
 
