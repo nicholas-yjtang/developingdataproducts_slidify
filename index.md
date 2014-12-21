@@ -16,17 +16,17 @@ github:
 
 ## Introduction
 
-* Our application will predict the text input is spam or nonspam.  
+> * Our application will predict the text input is spam or nonspam.  
   
-* The data to build the prediction model is provided by [Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Spambase)  
+> * The data to build the prediction model is provided by [Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Spambase)  
   
-* We partition the data randomly, using 60% as the training, and 40% as the test/validation set  
+> * We partition the data randomly, using 60% as the training, and 40% as the test/validation set  
     
-* The prediction model is built using the caret library, with focus on the boosted tree algorithm, with k-fold cross validation (k=10)  
+> * The prediction model is built using the caret library, with focus on the boosted tree algorithm, with k-fold cross validation (k=10)  
   
-* After creating the model. the application will take the text input and will convert it into the same format as the data set as described by [Machine Learning Repository - Dataset Description](https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names)  
+> * After creating the model. the application will take the text input and will convert it into the same format as the data set as described by [Machine Learning Repository - Dataset Description](https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names)  
   
-* The final result is obtained by running the converted input through our prediction model, and displays if it is spam or not
+> * The final result is obtained by running the converted input through our prediction model, and displays if it is spam or not
 
 --- .changetitlecolor
 
